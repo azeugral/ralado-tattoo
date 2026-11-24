@@ -66,7 +66,7 @@
     ' return o;}',
     'vec3 borda(float al,float ac,float t,float lit){',
     ' float perf=sin(t*3.14159), fw=meia.x*2.;',
-    ' if(est>3.5){ float pr=sin(t*3.14159); vec3 c=vec3(.03,.028,.026)*(.75+.6*pr)+vec3(.16,.15,.14)*pow(pr,6.)*max(lit,0.)*.5; float gi=smoothstep(.83,.86,t)*(1.-smoothstep(.93,.96,t)); float go=1.-smoothstep(.035,.065,t); vec3 au=mix(vec3(.52,.37,.16),vec3(.96,.83,.52),clamp(.55+.45*lit,0.,1.)); return mix(c,au,max(gi,go*.85)); }' +
+    ' if(est>3.5){ float dp=t*bo; float pr=sin(t*3.14159); vec3 c=vec3(.03,.028,.026)*(.75+.6*pr)+vec3(.16,.15,.14)*pow(pr,6.)*max(lit,0.)*.5; float wo=max(1.8*px,.07*bo); float go=1.-smoothstep(wo-.75,wo+.75,dp); float wi=max(.75*px,.04*bo); float gi=1.-smoothstep(wi-.75,wi+.75,abs(dp-.88*bo)); vec3 au=mix(vec3(.52,.37,.16),vec3(.96,.83,.52),clamp(.55+.45*lit,0.,1.)); return mix(c,au,max(gi,go*.85)); }' +
     ' if(est>2.5){ float pr=sin(t*3.14159); float l=.38+.42*pr+.3*lit*(.35+.65*pr); vec3 g=mix(vec3(.5,.36,.15),vec3(.94,.8,.5),clamp(l,0.,1.)); g+=vec3(1.,.94,.78)*exp(-pow((t-.34)/.08,2.))*(.12+.16*max(lit,0.)); g*=1.-.4*smoothstep(.82,1.,t)-.3*(1.-smoothstep(0.,.14,t)); return g; } vec3 base=est<.5?vec3(.03,.028,.027):est<1.5?vec3(.085,.077,.068):vec3(.17,.11,.055);',
     ' float veio=est>.5&&est<1.5?fb3(vec2(al/fw*3.,ac/bo*2.)):.5;',
     ' float esc=est>1.5?fb3(vec2(al/fw*.8,ac/bo*2.5)):.5;',
@@ -175,10 +175,10 @@
     return {
       P: P, CICLO: CICLO,
       desenha: function (t, dpr) {
-        var r = cv.getBoundingClientRect(), k = Math.min(dpr || 1, 2), W, H, u;
+        var r = cv.getBoundingClientRect(), k = Math.min(Math.max(dpr || 1, 1) * 2, 3), W, H, u;
         if (op.tam) { W = op.tam[0]; H = op.tam[1]; u = op.u || 1; }
         else {
-          var w = r.width * k, h = r.height * k, m = Math.sqrt(Math.min(1, 4.2e6 / Math.max(1, w * h)));
+          var w = r.width * k, h = r.height * k, m = Math.sqrt(Math.min(1, 8e6 / Math.max(1, w * h)));
           W = Math.max(2, Math.round(w * m)); H = Math.max(2, Math.round(h * m)); u = k * m;
         }
         if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
