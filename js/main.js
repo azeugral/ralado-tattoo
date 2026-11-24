@@ -5,7 +5,7 @@
   /* ---------- hero "galeria no chão" (modelo Veríssimo): as peças dele em quadros; cada uma cobre a anterior
      em tinta, um quadro depois do outro. WebGL no PC, MP4 no celular em pé ---------- */
   var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hero = d.querySelector('.gal'), cena = d.querySelector('.gal-cena'), V = '?v=1', INTRO = 2.4, orn = new Image();
+  var hero = d.querySelector('.gal'), cena = d.querySelector('.gal-cena'), V = '?v=2', INTRO = 2.4, orn = new Image();
   orn.src = 'img/orn/chao.webp' + V;
   var baixa = function () { return innerHeight <= 520 && innerWidth > innerHeight; };
   var celPe = function () { return innerWidth <= 860 && !baixa(); };
